@@ -1,0 +1,45 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "coding bootcamp project 2",
+  "main": "server.js",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "colors": "^1.3.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "chai": "^4.1.2",
+    "express-handlebars": "^3.0.0",
+    "jquery": "^3.3.1",
+    "mongodb": "^3.1.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virgili23/Project2.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "MySQL",
+    "coding",
+    "bootcamp",
+    "project",
+    "salon",
+    "appointment",
+    "schedule"
+  ],
+  "author": "Virgil, Kayla, Seirra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/virgili23/Project2/issues"
+  },
+  "homepage": "https://github.com/virgili23/Project2#readme"
+}
