@@ -1,78 +1,68 @@
+// *********************************************************************************
+// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// *********************************************************************************
+
+// Dependencies
+// =============================================================
+
 // Requiring our models
-// Require whatever we use for the sequelize js file
-var db = require("../models/lunch.js");
-var express = require('express');
+var db = require("../models");
 
 // Routes
-module.exports = function (app) {
-  // GET all groups
-  app.get("/api/groups", function (req, res) {
-    db.findAll({
-      attributes:
-      ['group_name'], group: ['group_name']
-    })
-      .then(function (data) {
-        res.json(data);
-      })
-  });
+// =============================================================
+module.exports = function(app) {
 
-  // GET all users of a group
-  app.get("/api/groups/:group", function (req, res) {
-    db.findAll({
-      where: {
-        group_name: req.params.group
-      },
-      attributes:
-      ['group_name', 'user_name']
-    })
-      .then(function (data) {
-        res.json(data);
-      })
-  });
-
-  // POST a new group
-  app.post("/api/newGroup", function (req, res) {
-    console.log(req.body);
-    db.create({
-      group_name: req.body.group_name
-      // user_name: req.body.user_name
-    }).then(function (data) {
-      res.json(data);
+  // GET route for getting all of the todos
+  app.get("/api/todos", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.Todo.findAll({}).then(function(dbTodo) {
+      // We have access to the todos as an argument inside of the callback function
+      res.json(dbTodo);
     });
   });
 
-  // POST a new barber/customer
-  app.post("/api/newRestaurant", function (req, res) {
-    console.log(req.body);
-    db.create({
-      group_name: req.body.group_name,
-      user_name: req.body.user_name,
-      restaurant_name: req.body.restaurant_name,
-      address: req.body.address,
-      phone: req.body.phone,
-      rating: req.body.rating,
-      photo: req.body.photo,
-      website: req.body.website,
-    })
-      .then(function (data) {
-        res.json(data);
-      });
+  // POST route for saving a new todo
+  app.post("/api/todos", function(req, res) {
+    // create takes an argument of an object describing the item we want to
+    // insert into our table. In this case we just we pass in an object with a text
+    // and complete property
+    db.Todo.create({
+      text: req.body.text,
+      complete: req.body.complete
+    }).then(function(dbTodo) {
+      // We have access to the new todo as an argument inside of the callback function
+      res.json(dbTodo);
+    });
   });
 
-  // GET a random restaurant
-  app.get("/api/pickRestaurant/:group", function(req, res){
-    db.findAll({
+  // DELETE route for deleting todos. We can get the id of the todo to be deleted from
+  // req.params.id
+  app.delete("/api/todos/:id", function(req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Todo.destroy({
       where: {
-        group_name: req.params.group,
-        restaurant_name:{
-          $ne: null
-        }
-      },
-      attributes:
-      ['restaurant_name', 'address', 'phone', 'rating', 'photo', 'website']
-  }).then(function (data) {
-    res.json(data);
-  })
-});
+        id: req.params.id
+      }
+    }).then(function(dbTodo) {
+      res.json(dbTodo);
+    });
+
+  });
+
+  // PUT route for updating todos. We can get the updated todo data from req.body
+  app.put("/api/todos", function(req, res) {
+    // Update takes in an object describing the properties we want to update, and
+    // we use where to describe which objects we want to update
+    db.Todo.update({
+      text: req.body.text,
+      complete: req.body.complete
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbTodo) {
+      res.json(dbTodo);
+    });
+  });
 
 };
