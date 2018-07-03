@@ -3,9 +3,8 @@ DROP DATABASE IF EXISTS appt_db;
 CREATE DATABASE appt_db;
 USE appt_db;
 
-
 -- booking info
-CREATE TABLE users (
+CREATE TABLE customer (
   id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
   customer_name VARCHAR(75) NOT NULL,
   email VARCHAR(50),

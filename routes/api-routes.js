@@ -1,78 +1,60 @@
-// Requiring our models
-// Require whatever we use for the sequelize js file
-var db = require("../models/lunch.js");
-var express = require('express');
+// *********************************************************************************
+// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// *********************************************************************************
+
+// Dependencies
+// =============================================================
+var Customer = require("../models/customer.js");
 
 // Routes
-module.exports = function (app) {
-  // GET all groups
-  app.get("/api/groups", function (req, res) {
-    db.findAll({
-      attributes:
-      ['group_name'], group: ['group_name']
-    })
-      .then(function (data) {
-        res.json(data);
-      })
+// =============================================================
+module.exports = function(app) {
+  // Search for Specific Customer (or all customers) then provides JSON
+  app.get("/api/:customer?", function(req, res) {
+    // If the user provides a specific customer in the URL...
+    if (req.params.customers) {
+      // Then display the JSON for ONLY that customer.
+      // (Note how we're using the ORM here to run our searches)
+      Customer.findOne({
+        where: {
+          routeName: req.params.customers
+        }
+      }).then(function(result) {
+        return res.json(result);
+      });
+    }
+    else {
+      // Otherwise...
+      // Otherwise display the data for all of the customers.
+      // (Note how we're using Sequelize here to run our searches)
+      Customer.findAll({}).then(function(result) {
+        return res.json(result);
+      });
+    }
   });
 
-  // GET all users of a group
-  app.get("/api/groups/:group", function (req, res) {
-    db.findAll({
-      where: {
-        group_name: req.params.group
-      },
-      attributes:
-      ['group_name', 'user_name']
-    })
-      .then(function (data) {
-        res.json(data);
-      })
-  });
+  // If a user sends data to add a new customer...
+  app.post("/api/new", function(req, res) {
+    // Take the request...
+    var customer = req.body;
 
-  // POST a new group
-  app.post("/api/newGroup", function (req, res) {
-    console.log(req.body);
-    db.create({
-      group_name: req.body.group_name
-      // user_name: req.body.user_name
-    }).then(function (data) {
-      res.json(data);
+    // Create a routeName
+
+    // Using a RegEx Pattern to remove spaces from customer.name
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    var routeName = customer.name.replace(/\s+/g, "").toLowerCase();
+
+    // Then add the customer to the database using sequelize
+    Customer.create({
+      routeName: routeName,
+      customer_name: customer.customer_name,
+      email: customer.email,
+      phone: customer.phone,
+      customer_id: customer.customer_id,
+      datetime_start: customer.datetime_start,
+      datetime_end: customer.datetime_end,
+      status_id: customer.status_id,
+      note: customer.note
     });
   });
-
-  // POST a new barber/customer
-  app.post("/api/newRestaurant", function (req, res) {
-    console.log(req.body);
-    db.create({
-      group_name: req.body.group_name,
-      user_name: req.body.user_name,
-      restaurant_name: req.body.restaurant_name,
-      address: req.body.address,
-      phone: req.body.phone,
-      rating: req.body.rating,
-      photo: req.body.photo,
-      website: req.body.website,
-    })
-      .then(function (data) {
-        res.json(data);
-      });
-  });
-
-  // GET a random restaurant
-  app.get("/api/pickRestaurant/:group", function(req, res){
-    db.findAll({
-      where: {
-        group_name: req.params.group,
-        restaurant_name:{
-          $ne: null
-        }
-      },
-      attributes:
-      ['restaurant_name', 'address', 'phone', 'rating', 'photo', 'website']
-  }).then(function (data) {
-    res.json(data);
-  })
-});
-
 };
