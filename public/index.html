@@ -32,40 +32,28 @@
         <br>
         <br>
         <br>
-        <br> 
+        <br>
+        
+<!-- Button and Modals -->
 
-        <!-- Button and Modals  -->
-        <button id="modalBtn1" class="button">Make An Appointment</button>
+<button id="modalBtn" class="button">Make an Appointment</button>
 
-  <div id="simpleModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-          <span class="closeBtn">&times;</span>
-          <h2>Make an Appointment</h2>
+<div id="simpleModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+        <span class="closeBtn">&times;</span>
+        <h2>Make an Appointment</h2>
+    </div>
+    <div class="modal-body">
+
+     <div class="field">
+        <label class="label" id="name">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input">
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="field">
-          <label class="label" id="name">Name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </div>
-        </div>
 
-        <div class="field">
-          <label class="label" id="email">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-          <p class="help is-danger">This email is invalid</p>
-        </div>
-
-        <div class="field">
+      <div class="field">
           <label class="label" id="phone">Phone</label>
           <div class="control">
             <input class="input" type="text" placeholder="Text input">
@@ -73,183 +61,61 @@
         </div>
 
         <div class="field">
-          <label class="label" id="customerID">Customer ID</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label" id="startTime">Start Time</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label" id="endTime">End Time</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label" id="status">Status</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label" id="message">Message</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
-          </div>
-        </div>
-        
-        <div class="field">
-          <div class="control">
-            <label class="checkbox">
-              <input type="checkbox">
-              I agree to the <a href="#">terms and conditions</a>
-            </label>
-          </div>
-        </div>
-        
-        <div class="field">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="question">
-              Yes
-            </label>
-            <label class="radio">
-              <input type="radio" name="question">
-              No
-            </label>
-          </div>
-        </div>
-        
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-text">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-        <button id="modalBtn2" class="button">Live Snippet</button>
-        <div id="simpleModal" class="modal">
-          <div class="modal-content">
-            <div class="modal-header">
-                <span class="closeBtn">&times;</span>
-                <h2>Make an Appointment</h2>
+            <label class="label" id="time">Start Time</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="HH:MM">
             </div>
-            <div class="modal-body">
-              <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
+          </div>
+        
+          <div class="field">
+              <label class="label" id="message">Message</label>
+              <div class="control">
+                <textarea class="textarea" placeholder="Textarea"></textarea>
               </div>
-      
-              <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                  <span class="icon is-small is-right">
-                    <i class="fas fa-exclamation-triangle"></i>
-                  </span>
-                </div>
-                <p class="help is-danger">This email is invalid</p>
-              </div>
-      
-              <div class="field">
-                <label class="label">Phone</label>
+            </div>
+
+            <div class="field is-grouped">
                 <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
-              </div>
-      
-              <div class="field">
-                <label class="label">Customer ID</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
-              </div>
-      
-              <div class="field">
-                <label class="label">Start Time</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
-              </div>
-      
-              <div class="field">
-                <label class="label">End Time</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
-              </div>
-      
-              <div class="field">
-                <label class="label">Status</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Text input">
-                </div>
-              </div>
-      
-              <div class="field">
-                <label class="label">Message</label>
-                <div class="control">
-                  <textarea class="textarea" placeholder="Textarea"></textarea>
-                </div>
-              </div>
-              
-              <div class="field">
-                <div class="control">
-                  <label class="checkbox">
-                    <input type="checkbox">
-                    I agree to the <a href="#">terms and conditions</a>
-                  </label>
-                </div>
-              </div>
-              
-              <div class="field">
-                <div class="control">
-                  <label class="radio">
-                    <input type="radio" name="question">
-                    Yes
-                  </label>
-                  <label class="radio">
-                    <input type="radio" name="question">
-                    No
-                  </label>
-                </div>
-              </div>
-              
-              <div class="field is-grouped">
-                <div class="control">
-                  <button class="button is-link" id="sumbit-btn">Submit</button>
+                  <button class="button is-link">Submit</button>
                 </div>
                 <div class="control">
                   <button class="button is-text">Cancel</button>
-
-                  
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <script src="main.js"></script>
-  </body>
-</html>
 
+            </body>
+            </html>
+
+<script type="text/javascript">
+// Get modal element
+var modal = document.getElementById('simpleModal');
+// Get open modal button
+var modalBtn = document.getElementById('modalBtn');
+// Get close button
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+// Listen for open click
+modalBtn.addEventListener('click', openModal);
+// Listen for close click
+closeBtn.addEventListener('click', closeModal);
+// Listen for outside click
+window.addEventListener('click', outsideClick);
+
+// Function to open modal
+function openModal(){
+  modal.style.display = 'block';
+}
+
+// Function to close modal
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+// Function to close modal if outside click
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
+
+</script>
