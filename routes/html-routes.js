@@ -18,7 +18,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // add route loads the index.html page, * Make Appointment *
+  // add route loads the index.html page, * Make Appointment Modal*
   // where users can enter new characters to the db
   app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));

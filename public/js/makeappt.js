@@ -1,46 +1,68 @@
 // Code here handles what happens when a user submits a new customer on the form.
 // Effectively it takes the form inputs then sends it to the server to save in the DB.
 
-// when user clicks add-btn
-$("#sumbit-btn").on("click", function(event) {
+// when user clicks submit-btn
+$("#submit-btn").on("click", function(event) {
   event.preventDefault();
-  
+
   // make a newCustomer obj
   var newCustomer = {
     // customer_name from name input
     customer_name: $("#name").val().trim(),
-    // email from email input
-    email: $("#email").val().trim(),
     // customer_id from customer_id input
-    customer_id: $("#customerID").val().trim(),
-    // datetime_start from datetime_start input
-    datetime_start: $("#startTime").val().trim(),
-    // datetime_end from datetime_end input
-    datetime_end: $("#endTime").val().trim(),
-    // status_id from status_id input
-    status_id: $("#status").val().trim(),
+    phone: $("#phone").val().trim(),
+    // datetime_start with moment.js
+    datetime_start: $moment().format("YYYY-MM-DD hh:mm a"),
     // message from message input
-    note: $("#message").val().trim()
+    message: $("#message").val().trim()
   };
+
+
+  // console.log(newCustomer);
 
   // send an AJAX POST-request with jQuery
   $.post("/api/new", newCustomer)
     // on success, run this callback
     .then(function(data) {
       // log the data we found
-      console.log(data);
-      // tell the user we're adding a customer with an alert window
-      alert("New customer added!");
+      var row = $("<div>");
+      row.addClass("customer");
+
+      row.append("<p>" + newCustomer.customer_name + " customer: </p>");
+      row.append("<p>" + newCustomer.phone + "</p>");
+      row.append("<p>At " + moment(newCustomer.datetime_start).format("h:mma on dddd") + "</p>");
+      row.append("<p>" + newCustomer.message + "</p>");
+
+      $("#customer-area").prepend(row);
     });
 
   // empty each input box by replacing the value with an empty string
   $("#name").val("");
-  $("#email").val("");
-  $("#customerID").val("");
+  $("#phone").val("");
   $("#startTime").val("");
-  $("#endTime").val("");
-  $("#status").val("");
   $("#message").val("");
+});
+
+// When the page loads, grab all of our chirps
+$.get("/api/all", function(data) {
+
+  if (data.length !== 0) {
+
+    for (var i = 0; i < data.length; i++) {
+
+      var row = $("<div>");
+      row.addClass("customer");
+
+      row.append("<p>" + data[i].customer_name + " customer.. </p>");
+      row.append("<p>" + data[i].phone + "</p>");
+      row.append("<p>At " + moment(data[i].datetime_start).format("h:mma on dddd") + "</p>");
+      row.append("<p>" + data[i].message + "</p>");
+
+      $("#customer-area").prepend(row);
+
+    }
+
+  }
 
 });
 
