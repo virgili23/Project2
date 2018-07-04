@@ -37,7 +37,7 @@ module.exports = function(app) {
       datetime_start: customer.datetime_start,
       message: customer.message
     }).then(function(results) {
-      // `results` here would be the newly created chirp
+      // `results` here would be the newly created customers
       res.end();
     });
 

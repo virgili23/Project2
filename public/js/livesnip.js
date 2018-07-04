@@ -5,7 +5,7 @@
 $("#liveSnip").on("click", function(event) {
   event.preventDefault();
 
-  // When the page loads, grab all of our chirps
+  // When the page loads, grab all of the customers
 $.get("/api/all", function(data) {
 
   if (data.length !== 0) {

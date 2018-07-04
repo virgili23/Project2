@@ -43,7 +43,7 @@ $("#submit-btn").on("click", function(event) {
   $("#message").val("");
 });
 
-// When the page loads, grab all of our chirps
+// When the page loads, grab all of our customer
 $.get("/api/all", function(data) {
 
   if (data.length !== 0) {
